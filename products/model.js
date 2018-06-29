@@ -1,9 +1,7 @@
-Sequelize = require('sequelize')
-require ('../db')
-var sequelize = new Sequelize('postgres://postgres:secret@localhost:5432/postgres')
+const Sequelize = require('sequelize')
+sequelize = require ('../db')
 
-
-export default Product = sequelize.define('product', {
+const Product = sequelize.define('product', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
