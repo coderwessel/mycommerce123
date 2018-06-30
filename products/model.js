@@ -14,10 +14,14 @@ const Product = sequelize.define('product', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  image: Sequelize.STRING
+  image: Sequelize.STRING,
+  userId: {
+    type: Sequelize.INTEGER,
+    field: 'user_id'
+  }
 }, {
   tableName: 'products',
-  timestamps: false
+	timestamps: false
 })
 
 module.exports = Product

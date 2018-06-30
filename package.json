@@ -4,10 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "pg": "6",
+    "jsonwebtoken": "^8.3.0",
+    "migratio": "^2.0.3",
+    "mocha": "^5.2.0",
+    "pg": "^7.4.3",
     "sequelize": "^4.38.0"
+  },
+  "scripts": {
+    "migrate": "node ./node_modules/migratio/cli.js up -c $DATABASE_URL"
   }
 }
