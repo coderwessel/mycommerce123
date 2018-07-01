@@ -8,9 +8,13 @@ const expect = chai.expect
 chai.use(chaiHttp)
 
 const host = 'http://localhost:4001'
-const email = 'bob@example.com'
-const password = 'alice'
+const emailA = 'bob@example.com'
+const passwordA = 'alice'
+const emailB = 'alice@example.com'
+const passwordB = 'bob'
 
+var userIdA
+var userIdB
 var jwt
 var productId
 
@@ -49,8 +53,8 @@ describe('Ecommerce REST API', () => {
     chai.request(host)
       .post('/logins')
       // .set('content-type', 'application/x-www-form-urlencoded')
-      .send({email: email,
-            password: password})
+      .send({email: emailA,
+            password: passwordA})
       .end(function(err, res) {
         const body = res.body
         expect(body).to.have.property('jwt')
@@ -142,6 +146,8 @@ describe('Ecommerce REST API', () => {
     })
 
 
+
+
   it('return 404 for /randomurl + random number', done => {
     chai.request(host)
       .get('/randomurl' + Math.random())
@@ -151,6 +157,9 @@ describe('Ecommerce REST API', () => {
       })
   })
 
+
+
+//end tests
 })
 
 

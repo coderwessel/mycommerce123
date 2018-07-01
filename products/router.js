@@ -21,25 +21,6 @@ router.get('/products', (request, response) => {
 
 
 
-//
-// router.get("/products", (req, res) => {
-//
-//   sendResponse(
-//
-//     Product.findAll({
-//
-//       attributes: ["id", "name", "price"]
-//
-//     }),
-//
-//     res
-//
-//   )
-//
-// })
-
-
-
 router.get("/products/:id", (req, res) => {
 
   sendResponse(Product.findById(+req.params.id), res)
@@ -90,23 +71,22 @@ router.put('/products/:id', (req, res) => {
 
 
 router.delete("/products/:id", requireUser, (req, res) => {
-
+	console.log(`The user that's deleting this product has ID = ${req.user.id}`)
   Product.findById(+req.params.id)
-
     .then(product => {
-
-      if (product) {
-
-        return product.destroy().then(_ => res.end())
-
+      if (product.userId !== req.user.id) {
+        res.status(403).send({
+          message: 'You\'re not allowed to edit this product!'
+	        })
       }
-
-      res.status(404).end()
-
+			else{
+	      if (product) {
+	        return product.destroy().then(_ => res.end())
+	      }
+	      res.status(404).end()
+			}
     })
-
     .catch(fail(res))
-
 })
 
 
