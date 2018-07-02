@@ -17,6 +17,7 @@
     "sequelize": "^4.38.0"
   },
   "scripts": {
+    "sequelize": "node ./node_modules/sequelize/lib/sequelize.js $*",
     "migrate": "node ./node_modules/migratio/cli.js up -c $DATABASE_URL"
   }
 }
